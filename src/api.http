@@ -10,3 +10,6 @@ Content-Type: application/json
   "password": "Abc@123",
   "name": "xuxa"
 }
+
+###
+GET http://localhost:3000/user/xuxa@email.com
