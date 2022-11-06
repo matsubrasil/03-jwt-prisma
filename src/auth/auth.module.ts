@@ -1,3 +1,4 @@
+import { LocalStrategy } from './strategies/local.strategy';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
@@ -16,7 +17,7 @@ import { AuthService } from './auth.service';
       signOptions: { expiresIn: '30d' },
     }),
   ],
-  providers: [AuthService],
+  providers: [AuthService, LocalStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}

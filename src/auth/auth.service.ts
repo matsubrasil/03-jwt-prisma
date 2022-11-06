@@ -1,15 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from './../prisma/prisma.service';
+import * as bcrypt from 'bcrypt';
+import { UserService } from 'src/user/user.service';
+import { UnauthorizedError } from './errors/unauthorized.error';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly userService: UserService) {}
 
   login() {
     return 'login';
   }
 
-  validateUser(email: string, password: string) {
-    throw new Error('Method not implemented.');
+  async validateUser(email: string, password: string) {
+    const user = await this.userService.findByEmail(email);
+
+    if (user) {
+      // verificar a senha
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      if (isPasswordValid) {
+        return {
+          ...user,
+          password: undefined,
+        };
+      }
+    }
+    // se chegar aqui, indica que não encontrou user e/ou a senha não corresponde
+    throw new UnauthorizedError(
+      'Email address or password provided is incorrect.',
+    );
   }
 }
