@@ -22,3 +22,8 @@ Content-Type: application/json
   "email": "xuxa@email.com",
   "password": "Abc@123"
 }
+
+###
+GET http://localhost:3000/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoieHV4YUBlbWFpbC5jb20iLCJuYW1lIjoieHV4YSIsImlhdCI6MTY2ODU0OTQ3MCwiZXhwIjoxNjcxMTQxNDcwfQ.Wwd56yvgHGZfAH1dx25-nXnot85mweZ0hNyNZ5QuMEk
